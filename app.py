@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 from models import db
 
-
 def create_app():
 
     app = Flask(__name__)
@@ -14,19 +13,37 @@ def create_app():
 
     db.init_app(app)
 
+    #  import models    
     import models.ingredient_model
+    import models.recipe_model
+    import models.recipe_ingredient_model
 
     with app.app_context():
         db.create_all()
+
+    from api_routes import api
+
+    app.register_blueprint(api, url_prefix='/api')    
+        
+    @app.before_request
+    def before_request():
+        app.jinja_env.cache = {}    
+
+    app.before_request(before_request)     
+
+
+
+    # @app.route("/")
+    # def index():
+    #     from models.recipe_model import Recipe
+    #     recipes = Recipe.query.all()
+
+    #     return render_template('hello.html', recipes=recipes)
 
     # @app.route("/hello/")
     # @app.route("/hello/<name>")
     # def hello(name=None):
     #     return render_template('hello.html', name=name)
-
-    @app.route("/")
-    def index():
-        return render_template('hello.html')
     
     return app
 
