@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Welcome to FlaskBlog {% endblock %}</h1>
+    <h1>{% block title %} Welcome to Recipe Box {% endblock %}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in recipes %}
+                <tr>
+                    <td>{{i.name}}</td>
+                </tr>
+            {% endfor %}    
+        </tbody>
+    </table>
 {% endblock %}
