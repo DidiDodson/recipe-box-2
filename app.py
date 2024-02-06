@@ -1,12 +1,12 @@
-from flask import Flask, request, render_template
+from flask import Flask
+from flask_cors import CORS
 import os
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import func
 from models import db
 
 def create_app():
 
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='build')
+    CORS(app)
 
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
