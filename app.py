@@ -30,20 +30,6 @@ def create_app():
         app.jinja_env.cache = {}    
 
     app.before_request(before_request)     
-
-
-
-    # @app.route("/")
-    # def index():
-    #     from models.recipe_model import Recipe
-    #     recipes = Recipe.query.all()
-
-    #     return render_template('hello.html', recipes=recipes)
-
-    # @app.route("/hello/")
-    # @app.route("/hello/<name>")
-    # def hello(name=None):
-    #     return render_template('hello.html', name=name)
     
     return app
 
