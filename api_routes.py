@@ -21,7 +21,7 @@ def get_recipes():
 
         return make_response(jsonify([recipe.json() for recipe in recipes]), 200)
     except Exception as e:
-        return make_response(jsonify({'message': 'error getting recipes'}))    
+        return make_response(jsonify({'message': 'error getting recipes'}), 500)    
 
 @api.route('recipes/<id>', methods=['GET'])
 def get_recipe(id):
@@ -30,7 +30,7 @@ def get_recipe(id):
 
         return make_response(jsonify({'recipe': recipe.json()}), 200)
     except Exception as e:
-        return make_response(jsonify({'message': 'error getting recipe'}))
+        return make_response(jsonify({'message': 'error getting recipe'}), 500)
     
 @api.route('ingredients', methods=['GET'])
 def get_ingredients():
@@ -39,14 +39,13 @@ def get_ingredients():
 
         return make_response(jsonify([ingredient.json() for ingredient in ingredients]), 200)
     except Exception as e:
-        return make_response(jsonify({'message': 'error getting ingredients'}))
+        return make_response(jsonify({'message': 'error getting ingredients'}), 500)
     
 @api.route('ingredients/<id>', methods=['GET'])
 def get_ingredient(id):
     try: 
         recipe = Recipe.query.filter_by(id=id).first()
-        print("R", recipe)
 
         return make_response(jsonify({'recipe': recipe.json()}), 200)
     except Exception as e:
-        return make_response(jsonify({'message': 'error getting recipe'}))    
+        return make_response(jsonify({'message': 'error getting recipe'}), 500)    
