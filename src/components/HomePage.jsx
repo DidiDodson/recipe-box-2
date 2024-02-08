@@ -1,10 +1,10 @@
 import * as React from 'react';
-import AppBar from './AppBar'
-
+import Typography from '@mui/material/Typography';
 
 export default function HomePage() {
-   
-  return (
-    <AppBar />
-  );
+    return (
+        <div>
+            <h1>Welcome to the Recipe Box!</h1>
+        </div>
+    );
 }
